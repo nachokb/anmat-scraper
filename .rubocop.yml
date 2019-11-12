@@ -1,0 +1,161 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - '**/tmp/**/*'
+    - '**/script/**/*'
+    - Rakefile
+    - Gemfile
+  UseCache: true
+  TargetRubyVersion: 2.6
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/AsciiComments:
+  Enabled: false
+
+Layout/AlignArguments:
+  EnforcedStyle: with_fixed_indentation
+  IndentationWidth: 2
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: true
+  MinSize: 4
+
+StringLiterals:
+  Enabled: false
+
+FormatString:
+  EnforcedStyle: percent
+
+MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+RedundantSelf:
+  Enabled: false
+
+EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+LineLength:
+  Max: 110
+
+MethodLength:
+  Max: 35
+
+EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+PerceivedComplexity:
+  Max: 7
+
+BlockDelimiters:
+  EnforcedStyle: semantic
+  FunctionalMethods:
+    - let
+    - let!
+    - html
+    - git_source
+    - json
+    - map
+    - map!
+    - modal
+    - reject!
+    - select!
+    - sequence
+    - specify
+    - subject
+    - watch
+  ProceduralMethods:
+    - build
+    - content_tag
+    - each
+    - find_or_initialize_by
+    - find_or_create_by
+    - new
+    - tag
+    - tap
+
+AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+CollectionMethods:
+  PreferredMethods:
+    inject: 'reduce'
+    detect: 'detect'
+
+ArrayJoin:
+  Enabled: false
+
+# AlignHash:
+#   EnforcedColonStyle: key
+
+CommentAnnotation:
+  Keywords:
+    - DRYME
+    - FIXME
+    - HACK
+    - HACKAROUND
+    - OPTIMIZE
+    - OPTIMIZEME
+    - REVIEW
+    - TBD
+    - TODO
+    - WORKAROUND
+
+DotPosition:
+  EnforcedStyle: trailing
+
+Lambda:
+  Enabled: false
+
+AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+ClassLength:
+  Max: 160
+
+CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: false
+
+# improve in a newer version
+AbcSize:
+  Max: 27
+
+RegexpLiteral:
+  EnforcedStyle: mixed
+  AllowInnerSlashes: false
+
+AsciiComments:
+  Enabled: false
+
+ParameterLists:
+  CountKeywordArgs: false
+
+Performance/Casecmp:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Lint/NonLocalExitFromIterator:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.axlsx'

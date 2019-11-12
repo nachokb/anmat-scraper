@@ -1,0 +1,11 @@
+.DS_Store
+.rvmrc
+.redcar
+.irbrc
+.bundle
+.byebug*
+tmp/
+log/
+config/application.yml
+start.sh
+public/uploads/*
