@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+VERSION=${VERSION:-$(cat VERSION)}
+DOCKER_REGISTRY_HOST=${DOCKER_REGISTRY_HOST:-registry.seiel.com.ar}
+DOCKER_IMAGE=${DOCKER_IMAGE:-receta/scraper}
+DOCKER_IMAGE=${DOCKER_IMAGE}/zeus-scraper-base
+
+docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+docker build --no-cache -f baseimage/Dockerfile -t $DOCKER_IMAGE .
+
+docker tag $DOCKER_IMAGE $DOCKER_REGISTRY_HOST/$DOCKER_IMAGE:latest
+docker tag $DOCKER_IMAGE $DOCKER_REGISTRY_HOST/$DOCKER_IMAGE:$VERSION
+
+docker push $DOCKER_REGISTRY_HOST/$DOCKER_IMAGE:latest
+docker push $DOCKER_REGISTRY_HOST/$DOCKER_IMAGE:$VERSION

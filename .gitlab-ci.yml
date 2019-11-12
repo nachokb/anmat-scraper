@@ -1,0 +1,75 @@
+# test:
+#   image: "registry.seiel.com.ar/aiepba/aiepba/comenius-base:20190124"
+#   stage: test
+#   script:
+#     - echo build from $CI_BUILD_REF_NAME / $CI_BUILD_REF \($CI_BUILD_ID\)
+#     - uname -a
+#     - ruby -v
+#     - which ruby
+#     - bundle install --jobs $(nproc) "${FLAGS[@]}"
+#     - cp config/database.env.yml config/database.yml
+#     - cp config/application.test.yml config/application.yml
+#     - bundle exec rake db:create
+#     - bundle exec rake db:migrate
+#     - bundle exec rake
+#   cache:
+#     untracked: true
+#     paths:
+#       - vendor/cache/
+#       - vendor/apt/
+#   coverage: '/LOC \(\d+.\d+\%\) covered/'
+#   artifacts:
+#     expire_in: 3 hours
+#     paths:
+#       - coverage/
+#   services:
+#     - postgres:9.5
+#     - redis:3.2-alpine
+#   variables:
+#     DB_USER: testing
+#     DB_PASS: testing
+#     DB_NAME: comenius_test
+#     POSTGRES_DB: comenius_test
+#     POSTGRES_USER: testing
+#     POSTGRES_PASSWORD: testing
+#     POSTGRES_HOST: postgres
+#     RAILS_ENV: test
+#   tags:
+#     - docker
+#   except:
+#     - tags
+#     - /^.*-baseimage$/
+
+build:baseimage:
+  stage: build
+  script:
+  - export VERSION=$(cat baseimage/VERSION)
+  - echo $VERSION
+  - baseimage/build.sh
+  tags:
+  - docker-privileged
+  when: manual
+  allow_failure: true
+
+build:baseimage:ref:
+  stage: build
+  script:
+  - export VERSION=$(cat baseimage/VERSION)-${CI_COMMIT_SHA:0:8}-${CI_COMMIT_REF_NAME}
+  - echo $VERSION
+  - baseimage/build.sh
+  tags:
+  - docker-privileged
+  when: manual
+  allow_failure: true
+
+build:baseimage:mr:
+  stage: build
+  script:
+  - export VERSION=$(cat baseimage/VERSION)-${CI_COMMIT_SHA:0:8}-${CI_COMMIT_REF_NAME}
+  - echo $VERSION
+  - baseimage/build.sh
+  tags:
+  - docker-privileged
+  allow_failure: true
+  only:
+    - /^.*-baseimage$/
