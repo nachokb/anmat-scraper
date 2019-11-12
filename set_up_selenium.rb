@@ -17,7 +17,7 @@ class SetUpSelenium
   def options
     options = Selenium::WebDriver::Chrome::Options.new
 
-    # options.add_argument('--headless')
+    options.add_argument('--headless') if context.headless
 
     options
   end
