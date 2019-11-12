@@ -9,3 +9,4 @@ log/
 config/application.yml
 start.sh
 public/uploads/*
+results.txt

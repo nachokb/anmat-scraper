@@ -10,14 +10,19 @@ class SetUpSelenium
   def call
     context.driver = Selenium::WebDriver.for :chrome,
       options: options
+    context.wait = Selenium::WebDriver::Wait.new timeout: timeout
   end
 
   private
   def options
     options = Selenium::WebDriver::Chrome::Options.new
 
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
 
     options
+  end
+
+  def timeout
+    context.timeout || 20
   end
 end

@@ -7,10 +7,13 @@ class SaveResults
   include Zeus::InteractorBase
 
   def call
-    puts "Yay! #{self.class.name}"
+    File.open 'results.txt', 'wb' do |file|
+      file << context.name
+    end
   end
 
-  def rollback
-    puts "Undoing #{self.class.name}"
+  private
+  def validate_context!
+    expects! :name
   end
 end

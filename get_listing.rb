@@ -7,12 +7,9 @@ class GetListing
   include Zeus::InteractorBase
 
   def call
-    puts "Yay! #{self.class.name}"
-
-    context.fail! message: 'matanga'
-  end
-
-  def rollback
-    puts "Undoing #{self.class.name}"
+    fill 'input#zk_comp_73',
+      with: '07798032933207' # Lorazepam
+    click 'button#zk_comp_80' # Buscar
+    click '[title="Ver Detalles"]' # Ver Detalles
   end
 end

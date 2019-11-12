@@ -5,6 +5,7 @@ require 'interactor'
 require './set_up_selenium'
 require './visit_page'
 require './get_listing'
+require './collect_data'
 require './save_results'
 
 class AnmatScraper
@@ -13,5 +14,6 @@ class AnmatScraper
   organize SetUpSelenium,
     VisitPage,
     GetListing,
+    CollectData,
     SaveResults
 end

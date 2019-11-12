@@ -7,21 +7,13 @@ class VisitPage
   include Zeus::InteractorBase
 
   def call
-    puts "Yay! #{self.class.name}"
-  end
-
-  def rollback
-    puts "Undoing #{self.class.name}"
+    driver.navigate.to url
   end
 
   private
   def validate_context!
     expects! :driver
+    expects! :wait
     expects! :url
-    # expects! :url2
-  end
-
-  def driver
-    context.driver
   end
 end
