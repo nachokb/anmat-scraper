@@ -9,9 +9,11 @@ class CollectData
   include Zeus::InteractorBase
 
   def call
-    span = elem('span.z-label#zk_comp_43')
+    span = elem('span.z-label#zk_comp_43') # nombre comercial
+    span2 = elem('span.z-label#zk_comp_122') # precio
 
-    context.name = span.text
+    context.name = [span, span2].map(&:text) * ' -- '
+    context.name << "\n"
   rescue Selenium::WebDriver::Error::TimeoutError
     context.fail! message: $!.message,
       backtrace: $@[1..3]
