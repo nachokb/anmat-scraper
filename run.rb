@@ -5,7 +5,7 @@ require './anmat_scraper'
 
 result = AnmatScraper.call url: 'https://servicios.pami.org.ar/vademecum/views/consultaPublica/listado.zul',
   timeout: 20,
-  headless: false
+  headless: true
 
 return if result.success?
 
